@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Webpage</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <div id="login">
+        <h2>Login</h2>
+        <input type="text" id="li-username" placeholder="Username" required>
+        <input type="password" id="li-password" placeholder="Password" required>
+        <button onclick="login()"id="login-button">Login</button>
+    </div>
+
+    <div id="signup">
+        <h2>Sign Up</h2>
+        <input type="text" id="su-username" placeholder="Username" required>
+        <input type="password" id="su-password" placeholder="Password" required>
+        <button onclick="signUp()"id="signup-button">Sign Up</button>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
