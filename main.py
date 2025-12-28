@@ -4,7 +4,7 @@ import os, json
 
 app = Flask(__name__)
 
-#create user.json file if it doesn't exist
+# Create users.json file if it doesn't exist
 if not os.path.exists('users.json'):
     with open('users.json', 'w') as f:
         json.dump({}, f)
@@ -59,7 +59,6 @@ def login():
         with open('users.json', 'r') as f:
             users = json.load(f)
 
-        # Check if password matches hashed password
         if username in users and check_password_hash(users[username]["password"], password):
             return jsonify({"ok": True, 'message': 'Login successful'})
         else:
