@@ -4,7 +4,7 @@ import os, json
 
 app = Flask(__name__)
 
-# Create users.json file if it doesn't exist
+#create user.json file if it doesn't exist
 if not os.path.exists('users.json'):
     with open('users.json', 'w') as f:
         json.dump({}, f)
