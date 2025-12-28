@@ -59,6 +59,7 @@ def login():
         with open('users.json', 'r') as f:
             users = json.load(f)
 
+        # Check if password matches hashed password
         if username in users and check_password_hash(users[username]["password"], password):
             return jsonify({"ok": True, 'message': 'Login successful'})
         else:
