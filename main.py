@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import os, json
 
 app = Flask(__name__)
+app.secret_key = 'DEV_KEY'
 
 #create user.json file if it doesn't exist
 if not os.path.exists('users.json'):
@@ -14,6 +15,12 @@ if not os.path.exists('users.json'):
 def index():
     return render_template('index.html')
 
+@app.route('/dashboard')
+def dashboard():
+    if 'username' in session:
+        return render_template('dashboard.html', username=session['username'])
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -36,6 +43,7 @@ def signup():
 
         hashed_password = generate_password_hash(password)
         users[username] = {"password": hashed_password}
+        session['username'] = username
 
         with open('users.json', 'w') as f:
             json.dump(users, f, indent=2)
@@ -59,7 +67,7 @@ def login():
         with open('users.json', 'r') as f:
             users = json.load(f)
 
-        # Check if password matches hashed password
+        #check if password matches hashed password
         if username in users and check_password_hash(users[username]["password"], password):
             return jsonify({"ok": True, 'message': 'Login successful'})
         else:
@@ -73,6 +81,11 @@ def login():
             "ok": False,
             'message': f'Server error: {str(e)}'
         }), 500
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

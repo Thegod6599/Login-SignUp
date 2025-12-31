@@ -11,7 +11,7 @@ function signUp() {
     .then(res => res.json())
     .then(data => {
         if (data.ok) {
-            alert('Sign up successful!');
+            window.location.href = '/dashboard'
         } else {
             alert('Sign up failed: ' + data.message);
         }
@@ -39,7 +39,7 @@ function login() {
     .then(res => res.json())
     .then(data => {
         if (data.ok) {
-            alert('Login successful!');
+            window.location.href = '/dashboard';
         } else {
             alert('Login failed: ' + data.message);
         }
