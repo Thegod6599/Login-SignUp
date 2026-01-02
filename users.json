@@ -1,8 +1,1 @@
-{
-  "Thegod6599": {
-    "password": "scrypt:32768:8:1$vgzKCu8AnLDSgIN9$fe61193f45860a1a6af97cb71e9419cf872365f3a99654b79a63ebf6f234ee303399f94d844adb77ab75b428cfa3090d4fa6e16891815fb7a56d46cd532d41a9"
-  },
-  "Dax": {
-    "password": "scrypt:32768:8:1$Pp7Bib7Doab96wpl$be36926d070c72fd98c30076b153a744b2376b2dad4cf53d21950867fdca58aedbbf8502d61b80da6fda5687f52251bd194c4d6f77e8ef9af43efe8272cd1f42"
-  }
-}
+{}

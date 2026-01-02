@@ -1,12 +1,13 @@
 function signUp() {
     const username = document.getElementById('su-username').value;
     const password = document.getElementById('su-password').value;
+    const email = document.getElementById('su-email').value
     fetch('/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password, email })
     })
     .then(res => res.json())
     .then(data => {
@@ -24,6 +25,7 @@ function signUp() {
     // Clear the input fields
     document.getElementById('su-username').value = '';
     document.getElementById('su-password').value = '';
+    document.getElementById('su-email').value = '';
 };
 
 function login() {

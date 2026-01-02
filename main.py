@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os, json
 
 app = Flask(__name__)
-app.secret_key = 'DEV_KEY'
+app.secret_key = 'YOUR_SECRET_KEY' #REPLACE WITH YOUR OWN SECRET KEY
 
 #create user.json file if it doesn't exist
 if not os.path.exists('users.json'):
@@ -28,11 +28,12 @@ def signup():
         data = request.get_json()
         username = data.get('username', '').strip()
         password = data.get('password', '').strip()
+        email = data.get('email', '').strip()
 
-        if not username or not password:
+        if not username or not password or not email:
             return jsonify({
                 "ok": False,
-                'message': 'Username and password are required'
+                'message': 'Username, password, and email are required'
             })
 
         with open('users.json', 'r') as f:
@@ -42,7 +43,7 @@ def signup():
             return jsonify({"ok": False, 'message': 'User already exists'})
 
         hashed_password = generate_password_hash(password)
-        users[username] = {"password": hashed_password}
+        users[username] = {"password": hashed_password, "email": email}
         session['username'] = username
 
         with open('users.json', 'w') as f:
@@ -69,11 +70,12 @@ def login():
 
         #check if password matches hashed password
         if username in users and check_password_hash(users[username]["password"], password):
+            session['username'] = username
             return jsonify({"ok": True, 'message': 'Login successful'})
         else:
             return jsonify({
                 "ok": False,
-                'message': 'Invalid username or password'
+                'message': 'Invalid username, or password'
             })
     except Exception as e:
         print(f"Error in login: {e}")
