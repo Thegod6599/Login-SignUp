@@ -22,21 +22,6 @@ Includes user signup, login, session handling, and logout.
 - JavaScript
 - Werkzeug Security
 
-
-## Project Structure
-
-.
-├── main.py
-├── users.json
-├── templates
-│   ├── index.html
-│   └── dashboard.html
-├── static
-│   ├── style.css
-│   └── static.js
-├── .gitignore
-└── README.md
-
 ## Setup Instructions
 
 1. Clone the repository
